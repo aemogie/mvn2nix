@@ -27,7 +27,7 @@ let
 
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
-      outputHash = "09jx8kpj0wsi7rshczfpkp77dpfhybdrfkazf1i3s48s3kckz32r";
+      outputHash = "sha256-gNviHNXvcC1dhf4T27GIjIAPAHdOgv/t6hoghNwgPuE=";
     }
   else
     buildMavenRepositoryFromLockFile { file = ./mvn2nix-lock.json; });
@@ -40,7 +40,7 @@ in stdenv.mkDerivation rec {
   buildPhase = ''
     echo "Using repository ${repository}"
     # 'maven.repo.local' must be writable so copy it out of nix store
-    mvn package --offline -Dmaven.repo.local=${repository}
+    mvn package -Dmaven.repo.local=${repository}
   '';
 
   installPhase = ''

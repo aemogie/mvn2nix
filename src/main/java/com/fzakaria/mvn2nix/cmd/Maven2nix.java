@@ -176,7 +176,7 @@ public class Maven2nix implements Callable<Integer> {
             if (code >= 400) {
                 throw new RuntimeException("Fetching the url failed with status code: " + code);
             }
-            var inputStream = new HashingInputStream(Hashing.sha256(), connection.getInputStream());
+            HashingInputStream inputStream = new HashingInputStream(Hashing.sha256(), connection.getInputStream());
             ByteStreams.exhaust(inputStream);
             return Optional.of(inputStream.hash().toString());
         } catch (IOException e) {

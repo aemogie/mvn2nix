@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Map;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,9 +14,10 @@ class Maven2nixTest {
 
     @Test
     void artifactsInJsonShouldBeInAlphabeticOrder() throws MalformedURLException {
-        var artifacts = new MavenNixInformation(Map.of(
-                "artifact-b", new MavenArtifact(new URL("https://dummy/url/b"), "b", "sha256-b"),
-                "artifact-a", new MavenArtifact(new URL("https://dummy/url/a"), "a", "sha256-a")));
+        HashMap<String, MavenArtifact> dummyArtifacts = new HashMap<>();
+        dummyArtifacts.put("artifact-b", new MavenArtifact(new URL("https://dummy/url/b"), "b", "sha256-b"));
+        dummyArtifacts.put("artifact-a", new MavenArtifact(new URL("https://dummy/url/a"), "a", "sha256-a"));
+        MavenNixInformation artifacts = new MavenNixInformation(dummyArtifacts);
         assertEquals("{\n" +
                 "  \"dependencies\": {\n" +
                 "    \"artifact-a\": {\n" +

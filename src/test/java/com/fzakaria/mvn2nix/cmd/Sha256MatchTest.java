@@ -2,6 +2,7 @@ package com.fzakaria.mvn2nix.cmd;
 
 import com.fzakaria.mvn2nix.maven.Artifact;
 import com.fzakaria.mvn2nix.util.Resources;
+import com.fzakaria.mvn2nix.model.MavenArtifact;
 import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
@@ -31,8 +32,8 @@ class Sha256MatchTest {
 
     @Test
     public void artifactUrlsWithMultipleRepositories() {
-        var repositories = new String[]{"https://repo-1/", "https://repo-2"};
-        var artifactInfo = mavenNixInformation(Sha256MatchTest::sha256, Sha256MatchTest::fakeArtifactAnalysis, repositories)
+        String[] repositories = new String[]{"https://repo-1/", "https://repo-2"};
+        MavenArtifact artifactInfo = mavenNixInformation(Sha256MatchTest::sha256, Sha256MatchTest::fakeArtifactAnalysis, repositories)
                 .byCanonicalName(artifactA.getCanonicalName());
         assertEquals(artifactInfo.getSha256(), sha256(artifactInfo.getUrl()).get());
     }

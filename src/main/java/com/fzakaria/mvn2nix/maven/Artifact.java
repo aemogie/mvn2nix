@@ -58,7 +58,7 @@ public class Artifact {
                 + version
                 + "/"
                 + name + "-" + version
-                + (classifier.isBlank() ? "" : "-" + classifier)
+                + (classifier.matches("\\s*") ? "" : "-" + classifier)
                 + "."
                 + extension;
     }

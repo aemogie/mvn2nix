@@ -22,7 +22,7 @@ public class UrlResolutionTest {
      */
     @Test
     public void artifactUrlsWithMultipleRepositories() {
-        var repositories = new String[] {"https://repo-1/", "https://repo-2"};
+        String[] repositories = new String[] {"https://repo-1/", "https://repo-2"};
         assertThat(toPrettyJson(mavenNixInformation(UrlResolutionTest::fakeArtifactResolver, UrlResolutionTest::fakeArtifactAnalysis, repositories)))
                 .isEqualToIgnoringNewLines("{\n" +
                 "  \"dependencies\": {\n" +
